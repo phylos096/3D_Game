@@ -9,6 +9,7 @@ LoadModel::LoadModel() {
 }
 
 LoadModel::~LoadModel() {
+
 	End();
 }
 

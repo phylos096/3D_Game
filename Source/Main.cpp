@@ -105,7 +105,6 @@ int _stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	BOX3D box;
 	box.CreateBOX(10, 0, 0, 10);
 
-
 		// メッセージループ
 	MSG msg = {};
 	while (msg.message != WM_QUIT) {

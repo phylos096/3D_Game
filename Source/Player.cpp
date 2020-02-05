@@ -9,6 +9,7 @@ static KeyInput* input = NULL;
 ///</summary>
 Player::Player(HINSTANCE hInstance, HWND hWnd, IDirect3DDevice9* pDevice3D) {
 
+
 	input = new KeyInput();
 	input->Create(hInstance, hWnd);
 

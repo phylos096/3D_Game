@@ -9,6 +9,7 @@ void Camera::Render(LoadModel* model, BaseObject* baseObject, IDirect3DDevice9* 
 	//環境光の設定
 	pDevice3D->SetRenderState(D3DRS_AMBIENT, 0xff000000);
 
+
 	//ワールドトランスフォーム（ローカル座標→ワールド座標への変換）	
 	pDevice3D->SetTransform(D3DTS_WORLD, &baseObject->Value_WorldPosition());
 	// ビュートランスフォーム（ワールド座標→カメラ座標への変換）

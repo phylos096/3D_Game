@@ -88,7 +88,6 @@ D3DXVECTOR3 BOX3D::Calculation(const char* str,byte i) {
 	switch (tmpChar) {
 	case '0':
 	case '8':
-
 		break;
 	case '1':
 	case '9':

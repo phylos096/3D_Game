@@ -8,8 +8,6 @@ Direct3D::Direct3D() {
 };
 
 Direct3D::~Direct3D() {
-	//RELEASE(g_pDevice);
-	//if (g_pDevice != NULL)g_pDevice->Release();
 	if (pDevice3D != NULL) pDevice3D->Release();
 	if (pD3D9 != NULL)pD3D9->Release();
 };

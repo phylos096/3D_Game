@@ -16,9 +16,6 @@ DirectXFont::~DirectXFont()
 };
 
 
-
-//HRESULT DirectXFont::Create(LPDIRECT3DDEVICE9 g_pDevice, int FontHeight)
-
 // DirectXƒtƒHƒ“ƒgì¬
 bool DirectXFont::Create(IDirect3DDevice9* pDevice3D, int FontHeight)
 {
