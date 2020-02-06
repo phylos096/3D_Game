@@ -21,12 +21,12 @@ public:
 
 	//DirectInputオブジェクトポインタ
 	LPDIRECTINPUT8 pDInput;
-	
+
 	//DirectInputデバイス、オブジェクトポインタ
 	LPDIRECTINPUTDEVICE8 pKeyDevice;
 
 
-	bool Create(HINSTANCE hInstance,HWND hWnd);
+	bool Create(HINSTANCE hInstance, HWND hWnd);
 
 	void Update();
 

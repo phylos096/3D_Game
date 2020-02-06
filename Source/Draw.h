@@ -15,10 +15,10 @@ private:
 	Draw();
 	~Draw();
 public:
-	
+
 	void main(void);
-	HRESULT CreateVertexBuffer(UINT,DWORD,DWORD,D3DPOOL,IDirect3DVertexBuffer9**,HANDLE*);
-	HRESULT Lock(UINT,UINT,void**,DWORD);
+	HRESULT CreateVertexBuffer(UINT, DWORD, DWORD, D3DPOOL, IDirect3DVertexBuffer9**, HANDLE*);
+	HRESULT Lock(UINT, UINT, void**, DWORD);
 
 	void IsDraw();
 };

@@ -55,7 +55,7 @@ void Camera::Render(LoadModel* model, IDirect3DDevice9* pDevice3D) {
 	pDevice3D->SetRenderState(D3DRS_AMBIENT, 0xff000000);
 
 	//ワールドトランスフォーム（ローカル座標→ワールド座標への変換）	
-	pDevice3D->SetTransform(D3DTS_WORLD, (0,0,0));
+	pDevice3D->SetTransform(D3DTS_WORLD, (0, 0, 0));
 	// ビュートランスフォーム（ワールド座標→カメラ座標への変換）
 	D3DXMATRIX matView;
 	D3DXVECTOR3 vecEyePt(5.0f, 6.0f, -8.0f); //カメラ（視点）位置

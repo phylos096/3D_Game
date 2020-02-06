@@ -14,7 +14,7 @@ Player::Player(HINSTANCE hInstance, HWND hWnd, IDirect3DDevice9* pDevice3D) {
 	input->Create(hInstance, hWnd);
 
 	model = new LoadModel();
-	model->Load(_T("Model/Human.x"), _T("Model/Human.x"), pDevice3D, &Value_Position());
+	model->Load(_T("../Model/Human.x"), pDevice3D, &Value_Position());
 
 	baseobject = new BaseObject();
 

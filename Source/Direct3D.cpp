@@ -97,7 +97,7 @@ bool Direct3D::Create(HWND hWnd, int Window_Width, int Window_Height) {
 			}
 		}
 	}
-	
+
 	return true;
 }
 

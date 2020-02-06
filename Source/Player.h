@@ -5,7 +5,7 @@
 #include"KeyInput.h"
 #include"Camera.h"
 
-class Player: public BaseObject,public LoadModel
+class Player : public BaseObject, public LoadModel
 {
 private:
 	KeyInput* input;
@@ -22,5 +22,5 @@ public:
 	void Result();
 	void Draw(IDirect3DDevice9*);
 	void End();
-	
+
 };

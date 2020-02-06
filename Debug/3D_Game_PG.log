@@ -9,6 +9,6 @@ C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\BaseObject.h(378,47): warning C4244
 C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\BaseObject.h(378,39): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
 C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\BaseObject.h(378,31): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
 C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\BaseObject.h(390,34): warning C4244: '引数': 'double' から 'FLOAT' への変換です。データが失われる可能性があります。
-C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\Main.cpp(51,38): warning C4302: '型キャスト': 'LPWSTR' から 'WORD' へ切り詰めます。
-C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\Main.cpp(53,42): warning C4302: '型キャスト': 'LPWSTR' から 'WORD' へ切り詰めます。
+C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\Main.cpp(52,38): warning C4302: '型キャスト': 'LPSTR' から 'WORD' へ切り詰めます。
+C:\Users\nwuser.DA\Desktop\3D_Game_PG\Source\Main.cpp(54,42): warning C4302: '型キャスト': 'LPSTR' から 'WORD' へ切り詰めます。
   3D_Game_PG.vcxproj -> C:\Users\nwuser.DA\Desktop\3D_Game_PG\Debug\3D_Game_PG.exe

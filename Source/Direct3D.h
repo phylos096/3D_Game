@@ -2,7 +2,7 @@
 
 #include"Main.h"
 
-class Direct3D 
+class Direct3D
 {
 public:
 	IDirect3D9* pD3D9;				//Direct3Dデバイス生成オブジェクト

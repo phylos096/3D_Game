@@ -3,7 +3,7 @@
 #pragma region コンストラクタ
 ///<summary>KeyInputのコンストラクタ</summary>
 KeyInput::KeyInput() {
-	
+
 	pDInput = NULL;
 	pKeyDevice = NULL;
 
@@ -13,7 +13,7 @@ KeyInput::KeyInput() {
 
 
 #pragma region Create関数
-bool KeyInput::Create(HINSTANCE hInstance,HWND hWnd) {
+bool KeyInput::Create(HINSTANCE hInstance, HWND hWnd) {
 
 	//DirectInput8オブジェクト作成
 	hr = DirectInput8Create(hInstance,
@@ -38,7 +38,7 @@ bool KeyInput::Create(HINSTANCE hInstance,HWND hWnd) {
 	if (FAILED(hr))return false;
 
 	pKeyDevice->SetCooperativeLevel(hWnd, DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
-	
+
 	if (FAILED(hr))return false;
 
 	//バッファサイズの設定
@@ -59,7 +59,7 @@ bool KeyInput::Create(HINSTANCE hInstance,HWND hWnd) {
 #pragma region Update関数
 ///<summary>KeyInputのUpdate</summary>
 void KeyInput::Update() {
-	
+
 	DIDEVICEOBJECTDATA od;
 	DWORD dwInOut = 1;
 
@@ -72,7 +72,7 @@ void KeyInput::Update() {
 		if (od.dwData & 0x80)KeyState[od.dwOfs] = TRUE;
 		else KeyState[od.dwOfs] = FALSE;
 	}
-	
+
 }
 #pragma endregion
 

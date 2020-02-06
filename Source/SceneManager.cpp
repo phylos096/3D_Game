@@ -32,7 +32,7 @@ void SceneManager::Play() {
 		NextScene = GameScene::GameScene_None;			//次のシーン情報をクリア
 		Init();	//現在のシーンを初期化
 	}
-	switch(NowScene) {
+	switch (NowScene) {
 	case GameScene::GameScene_StartMenu:
 		break;
 	case GameScene::GameScene_Play:

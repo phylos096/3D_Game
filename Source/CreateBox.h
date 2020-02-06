@@ -14,7 +14,7 @@ class BOX3D
 private:
 	float X[6][4], Y[6][4], Z[6][4];
 	DWORD Color[6][4];
-	D3DXVECTOR3	Calculation(const char* str,byte i);
+	D3DXVECTOR3	Calculation(const char* str, byte i);
 	D3DXVECTOR3 tmpPosition;
 
 public:
@@ -22,7 +22,7 @@ public:
 	~BOX3D();
 	void CreateBOX(float x, float y, float z, float length);
 
-	void SetUpMatrices(IDirect3DDevice9* pDevice3D,float x, float y, float z);
-	
+	void SetUpMatrices(IDirect3DDevice9* pDevice3D, float x, float y, float z);
+
 	void Draw(IDirect3DDevice9* pDevice3D);
 };

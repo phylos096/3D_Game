@@ -2,6 +2,7 @@
 #include "DirectXFont.h"
 #include "Player.h"
 #include "CreateBox.h"
+#include"Main.h"
 
 /******************************************************
 
@@ -48,7 +49,7 @@ int _stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	//ウィンドウプロシージャのインスタンスハンドル
 	wcex.hInstance = hInstance;
 	//アイコンハンドル
-	wcex.hIcon = (HICON)LoadImage(NULL, MAKEINTRESOURCE(IDI_APPLICATION),IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_SHARED);
+	wcex.hIcon = (HICON)LoadImage(NULL, MAKEINTRESOURCE(IDI_APPLICATION), IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_SHARED);
 	//マウスカーソルハンドル
 	wcex.hCursor = (HCURSOR)LoadImage(NULL, MAKEINTRESOURCE(IDC_ARROW), IMAGE_CURSOR, 0, 0, LR_DEFAULTSIZE | LR_SHARED);
 	//ウィンドウの背景食
@@ -64,12 +65,12 @@ int _stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	if (!RegisterClassEx(&wcex))return FALSE;
 
 	// ウィンドウの作成
-	HWND hWnd = CreateWindowEx(0,wcex_BASIC,
+	HWND hWnd = CreateWindowEx(0, wcex_BASIC,
 		_T("Application"),
 		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VISIBLE,
-		CW_USEDEFAULT, 
 		CW_USEDEFAULT,
-		WINDOW_WIDTH, 
+		CW_USEDEFAULT,
+		WINDOW_WIDTH,
 		WINDOW_HEIGHT,
 		NULL, NULL, hInstance, NULL);
 
@@ -100,12 +101,12 @@ int _stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	modelObje.Value_PosY(-0.5f);
 	modelObje.Value_PosZ(1.5f);
 	modelObje.Update();
-	model.Load(_T("Model/Can.x"), _T("Model/Can.x"),direct3D.pDevice3D,&modelObje.Value_Position());
+	model.Load(_T("../Model/Can.x"),direct3D.pDevice3D,&modelObje.Value_Position());
 
 	BOX3D box;
 	box.CreateBOX(10, 0, 0, 10);
-
-		// メッセージループ
+	
+	// メッセージループ
 	MSG msg = {};
 	while (msg.message != WM_QUIT) {
 		// アプリケーションに送られてくるメッセージをメッセージキューから取得する
@@ -130,18 +131,18 @@ int _stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 				font[2].Draw(0xff000000, 0, 50, _T("X:%lf  Y:%lf  Z:%lf"),player.baseobject->Value_PosX(),player.baseobject->Value_PosY(),player.baseobject->Value_PosZ());
 				font[2].Draw(0xff000000, 0, 75, _T("Angle:%lf"),player.baseobject->Value_Angle());
-				
+
 				font[1].Draw(0xff000000, 0, 0, _T("やること:BOXの描写 \n"));
-				
+
 				player.Update();
 				player.Draw(direct3D.pDevice3D);
-
 
 				// 描画終了
 				direct3D.pDevice3D->EndScene();
 			}
 			// 描画反映
 			direct3D.pDevice3D->Present(NULL, NULL, NULL, NULL);
+		
 		}
 	}
 	return 0;
@@ -154,30 +155,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	HDC hdc;
 	switch (msg)
 	{
-	/*case WM_MOUSEMOVE:
-		if (g_input) {
-			if (windowmode) {
-				g_input->Mouse()->SetCursorPos(LOWORD(lParam), HIWORD(lParam));
+		/*case WM_MOUSEMOVE:
+			if (g_input) {
+				if (windowmode) {
+					g_input->Mouse()->SetCursorPos(LOWORD(lParam), HIWORD(lParam));
+				}
 			}
-		}
-		return DefWindowProc(hWnd, msg, wParam, lParam);
+			return DefWindowProc(hWnd, msg, wParam, lParam);
 
-	//キーが押された時呼ばれる
-	//DirectInputに変えたいです
-	/*case WM_KEYDOWN:
-		switch ((CHAR)wParam) {
-		case VK_LEFT:
-		case 'A':
-			MessageBox(hWnd, TEXT("キーが押されました"),
-				TEXT("Kitty"), MB_ICONINFORMATION);
-			break;
-		case VK_RIGHT:
-			break;
-		
-		}
-		break;*/
+		//キーが押された時呼ばれる
+		//DirectInputに変えたいです
+		/*case WM_KEYDOWN:
+			switch ((CHAR)wParam) {
+			case VK_LEFT:
+			case 'A':
+				MessageBox(hWnd, TEXT("キーが押されました"),
+					TEXT("Kitty"), MB_ICONINFORMATION);
+				break;
+			case VK_RIGHT:
+				break;
 
-	//キーボードのキーから指が離れた時呼ばれる
+			}
+			break;*/
+
+			//キーボードのキーから指が離れた時呼ばれる
 	case WM_KEYUP:
 		break;
 
@@ -187,7 +188,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 		RECT rect;
 		GetClientRect(hWnd, &rect);
-		
+
 		EndPaint(hWnd, &ps);
 	}
 	break;
@@ -204,11 +205,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 /*HRESULT InitD3D(HWND hWnd) {
 
-	// Direct3D9オブジェクトの作成	
+	// Direct3D9オブジェクトの作成
 	//pD3D9 = Direct3DCreate9(D3D_SDK_VERSION);
 	//IDirect3D9コンポーネントの取得
 	if (NULL == (pD3D9 = Direct3DCreate9(D3D_SDK_VERSION)))return FALSE;
-	
+
 	// ディスプレイ情報取得
 	pD3D9->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &Display);
 
@@ -217,7 +218,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	//画面の大きさ
 	D3DParam.BackBufferWidth = WINDOW_WIDTH;
 	D3DParam.BackBufferHeight = WINDOW_HEIGHT;
-	
+
 	//画面のフォーマット情報
 	D3DParam.BackBufferFormat = Display.Format;
 
@@ -225,7 +226,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	D3DParam.BackBufferCount = 1;
 
 	//有効にすると「ジャギ消し効果」「アンチエイリアス」がかかる
-	//対応していない場合があるので、Defaultにしておく。 
+	//対応していない場合があるので、Defaultにしておく。
 	D3DParam.MultiSampleType = D3DMULTISAMPLE_NONE;
 
 	//マルチサンプルの品質レベル
@@ -259,7 +260,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	//フルスクリーンのリフレッシュレートを指定
 	//ウィンドウだと0にする必要がある
 	D3DParam.FullScreen_RefreshRateInHz = 0;//;
-	
+
 	//スワップの書き換えタイミングを設定する
 	//タイミングは垂直回帰線間隔を待つか待たないかがある。
 	//待つ場合は、テアリングが出るのを防ぐ
@@ -342,11 +343,11 @@ int WINAPI WinMain(HINSTANCE hInst,
 	if (!RegisterClassEx(&wcex))return FALSE;
 
 	//ウィンドウ作成
-	HWND hwnd = CreateWindow(CLASSNAME, 
+	HWND hwnd = CreateWindow(CLASSNAME,
 							_T("3D_Game_PG"),
-							WS_OVERLAPPEDWINDOW, 
-							CW_USEDEFAULT, 0, 
-							1080, 720, 
+							WS_OVERLAPPEDWINDOW,
+							CW_USEDEFAULT, 0,
+							1080, 720,
 							NULL, NULL, hInst, NULL);
 
 	if (!hwnd)return FALSE;
@@ -512,10 +513,10 @@ HRESULT InitD3D(HWND hwnd) {
 	//画面の大きさ
 	d3dpp.BackBufferWidth = 1080;
 	d3dpp.BackBufferHeight = 720;
-	
+
 	//バックバッファの数
 	d3dpp.BackBufferCount = 1;
-	
+
 	//有効にすると「ジャギ消し効果」「アンチエイリアス」がかかる
 	//対応していない場合があるので、Defaultにしておく。
 	d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
@@ -551,7 +552,7 @@ HRESULT InitD3D(HWND hwnd) {
 	//フルスクリーンのリフレッシュレートを指定
 	//ウィンドウだと0にする必要がある
 	d3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-	
+
 	//スワップの書き換えタイミングを設定する
 	//タイミングは垂直回帰線間隔を待つか待たないかがある。
 	//待つ場合は、テアリングが出るのを防ぐ
@@ -569,8 +570,8 @@ HRESULT InitD3D(HWND hwnd) {
 		return E_FAIL;
 	}
 
-	/*if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd, 
-									D3DCREATE_SOFTWARE_VERTEXPROCESSING, 
+	/*if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd,
+									D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 									&d3dpp, &g_pd3dDevice))) {
 		return E_FAIL;
 	}*//*
@@ -583,7 +584,7 @@ HRESULT InitD3D(HWND hwnd) {
 LRESULT WINAPI MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	PAINTSTRUCT ps;
 	HDC hdc;
-	switch (msg) 
+	switch (msg)
 	{
 	case WM_MOUSEMOVE:
 		if (g_input) {
@@ -610,7 +611,7 @@ LRESULT WINAPI MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	case WM_PAINT:
 	{
 		hdc = BeginPaint(hwnd, &ps);
-		
+
 		RECT rect;
 		GetClientRect(hwnd, &rect);
 		//ちらつき防止のためダブルバッファを作る
@@ -622,7 +623,7 @@ LRESULT WINAPI MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 		//描画(ダブルバッファへ)
 		cursor.Draw(hdcDoubleBuffer);
-		
+
 		//説明書き
 		{
 
@@ -688,11 +689,11 @@ HRESULT InitD3D_Full (HWND hwnd) {
 	d3dpp.BackBufferFormat = dispmode.Format;
 	d3dpp.FullScreen_RefreshRateInHz = dispmode.RefreshRate;
 
-	if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd, 
-									D3DCREATE_HARDWARE_VERTEXPROCESSING, 
+	if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd,
+									D3DCREATE_HARDWARE_VERTEXPROCESSING,
 									&d3dpp, &g_pd3dDevice))) {
-		if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd, 
-										D3DCREATE_SOFTWARE_VERTEXPROCESSING, 
+		if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hwnd,
+										D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 										&d3dpp, &g_pd3dDevice))) {
 			{
 				return E_FAIL;

@@ -1,4 +1,4 @@
-ï»¿#include "CreateBox.h"
+#include "CreateBox.h"
 
 BOX3D::BOX3D() {
 	for (byte box3d_i = 0; box3d_i < 6; box3d_i++) {
@@ -17,11 +17,11 @@ BOX3D::~BOX3D() {
 };
 
 /// <summary>
-/// ç«‹æ–¹ä½“ã®ä¸­å¿ƒåº§æ¨™ã‚’å…¥åŠ›ã™ã‚‹
+/// —§•û‘Ì‚Ì’†SÀ•W‚ğ“ü—Í‚·‚é
 /// </summary>
 void BOX3D::CreateBOX(float x, float y, float z, float length) {
-	
-	//å„é ‚ç‚¹ã®åº§æ¨™ã‚’æ ¼ç´ã™ã‚‹
+
+	//Še’¸“_‚ÌÀ•W‚ğŠi”[‚·‚é
 	for (byte box3d_i = 0; box3d_i < 6; box3d_i++) {
 		for (byte box3d_j = 0; box3d_j < 4; box3d_j++) {
 			switch (box3d_i)
@@ -53,35 +53,35 @@ void BOX3D::CreateBOX(float x, float y, float z, float length) {
 	tmpPosition = D3DXVECTOR3(x, y, z);
 };
 
-void BOX3D::SetUpMatrices(IDirect3DDevice9* pDevice3D,float x,float y,float z) {
+void BOX3D::SetUpMatrices(IDirect3DDevice9* pDevice3D, float x, float y, float z) {
 	D3DXMATRIX      matView;
 	D3DXMATRIX      matProj;
 	D3DXMATRIX      w;
 
-	//D3DXMatrixRotationAxis(&w, &tmpPosition, timeGetTime()); // ä»»æ„ã®è»¸ã‚’å›è»¢è»¸ã«ã—ã¦å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹ã€‚ ã‚·ã‚¹ãƒ†ãƒ æ™‚åˆ»ã‚’ãƒŸãƒªç§’å˜ä½ã§å–å¾—
+	//D3DXMatrixRotationAxis(&w, &tmpPosition, timeGetTime()); // ”CˆÓ‚Ì²‚ğ‰ñ“]²‚É‚µ‚Ä‰ñ“]‚·‚és—ñ‚ğì¬‚·‚éB ƒVƒXƒeƒ€‚ğƒ~ƒŠ•b’PˆÊ‚Åæ“¾
 
-	D3DXMatrixTranslation(&matView, tmpPosition.x, tmpPosition.y, tmpPosition.z); // ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æŒ‡å®šã—ã¦è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹ã€‚
+	D3DXMatrixTranslation(&matView, tmpPosition.x, tmpPosition.y, tmpPosition.z); // ƒIƒtƒZƒbƒg‚ğw’è‚µ‚Äs—ñ‚ğì¬‚·‚éB
 
 	//matView = w * matView;
 	pDevice3D->SetTransform(D3DTS_VIEW, &matView);
 
-	//é€è¦–å¤‰æ›ã®è¨­å®š// è¦–é‡ã«åŸºã¥ã„ã¦ã€å·¦æ‰‹åº§æ¨™ç³»ãƒ‘ãƒ¼ã‚¹ãƒšã‚¯ãƒ†ã‚£ãƒ–å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
-	D3DXMatrixPerspectiveFovLH(&matProj, D3DXToRadian(45.0f), 1.0f, -300, 300); 
+	//“§‹•ÏŠ·‚Ìİ’è// ‹–ì‚ÉŠî‚Ã‚¢‚ÄA¶èÀ•WŒnƒp[ƒXƒyƒNƒeƒBƒuË‰es—ñ‚ğì¬‚·‚é
+	D3DXMatrixPerspectiveFovLH(&matProj, D3DXToRadian(45.0f), 1.0f, -300, 300);
 	pDevice3D->SetTransform(D3DTS_PROJECTION, &matProj);
 }
 
 
 void BOX3D::Draw(IDirect3DDevice9* pDevice3D) {
-	SetUpMatrices(pDevice3D,0, 0, 0);
+	SetUpMatrices(pDevice3D, 0, 0, 0);
 	pDevice3D->SetFVF(D3DFVF_VERTEX);
 	for (byte box_i = 0; box_i < 6; box_i++) {
 		//for (byte box_j = 0; box_j < 4; box_j++) {
-			pDevice3D->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, (X[box_i], Y[box_i], Z[box_i],Color[box_i]), sizeof(D3DXVECTOR3));
+		pDevice3D->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, (X[box_i], Y[box_i], Z[box_i], Color[box_i]), sizeof(D3DXVECTOR3));
 		//}
 	}
 }
 
-D3DXVECTOR3 BOX3D::Calculation(const char* str,byte i) {
+D3DXVECTOR3 BOX3D::Calculation(const char* str, byte i) {
 
 	byte tmpFlag[3] = { -1 };
 	char tmpChar = str[i];
@@ -130,7 +130,7 @@ D3DXVECTOR3 BOX3D::Calculation(const char* str,byte i) {
 }
 
 
-/*  
+/*
 1	50,50,50
 
 2	50,50,-50
@@ -149,7 +149,7 @@ D3DXVECTOR3 BOX3D::Calculation(const char* str,byte i) {
 
 7341 3512 8573 4678 6285 2614
 
-//å…ˆé ­ã«0ã‚’è¶³ã™
+//æ“ª‚É0‚ğ‘«‚·
 001 101 011 111 -> 0001 0101 0011 0111 -> 1537(5431)
 101 100 111 110 -> 0101 0100 0111 0110 -> 5476(21622)
 000 100 001 101 -> 0000 0100 0001 0101 -> 0415(1045)
@@ -157,7 +157,7 @@ D3DXVECTOR3 BOX3D::Calculation(const char* str,byte i) {
 010 110 000 100 -> 0010 0110 0000 0100 -> 3604(13828)
 110 010 111 011 -> 0110 0010 0111 0011 -> 6273(25203)
 
-//å…ˆé ­ã«1ã‚’è¶³ã™
+//æ“ª‚É1‚ğ‘«‚·
 001 101 011 111 -> 1001 1101 1011 1111 -> 9DBF(40383)
 101 100 111 110 -> 1101 1100 1111 1110 -> DCFE(56574)
 000 100 001 101 -> 1000 1100 1001 1101 -> 8C9D(35997)
